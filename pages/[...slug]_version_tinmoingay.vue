@@ -21,15 +21,15 @@ if (route.params.slug) {
     slug = slugArr[1];
   }
 
-  // console.log('vue');
-  const apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
+  // console.log(id);
+  const apiUrl = `https://${domain}/api/post/getBlogBySlug?slug=${slug}`;
   const response = await fetch(apiUrl);
   const json = await response.json();
+  // console.log(json);
 
   let meta = [];
   if (json.code == 1) {
     data = json['data'];
-    // console.log(data);
     const metaData = {};
     //convert properties from yoast_head_json to array
 
