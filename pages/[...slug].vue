@@ -1,10 +1,10 @@
 <template>
   <div class="post" v-if="data">
-    <h1 class="title mt-3" v-html="data.title.rendered"></h1>
+    <h1 class="title mt-3" v-html="data.title"></h1>
     <div class="post-meta">
-      <span class="date me-1">{{ formatDate(data.date) }}</span>
+      <span class="date me-1">{{ formatDate(data.created_at) }}</span>
     </div>
-    <div class="post-content mt-2" v-html="data.content.rendered"></div>
+    <div class="post-content mt-2" v-html="data.description"></div>
   </div>
 </template>
 <script setup>
@@ -17,87 +17,59 @@ if (route.params.slug) {
     id = id[0];
   }
 
-  const apiUrl = `https://news.bongda1.net/wp-json/wp/v2/posts?slug=${id}`;
+  // console.log(id);
+  const apiUrl = `https://meovat.tinmoingay.net/api/post/getBlogBySlug?slug=${id}`;
   const response = await fetch(apiUrl);
   const json = await response.json();
-  //console.log(data);
-  if (json.length > 0) {
-    data = json[0];
-    const metaData = data.yoast_head_json;
+  console.log(json);
+
+  let meta = [];
+  if (json.code == 1) {
+    data = json['data'];
+    const metaData = {};
     //convert properties from yoast_head_json to array
-    let meta = Object.entries(metaData)
-      .filter((item) => {
-        return [
-          "og_locale",
-          "og_type",
-          "og_title",
-          "og_description",
-          "og_url",
-          "og_site_name",
-          "article_published_time",
-          "twitter_card",
-        ].includes(item[0]);
-      })
-      .map((item) => {
-        if (item[0] === "twitter_card") {
-          return {
-            name: "twitter:card",
-            content: item[1],
-          };
-        }
-        return {
-          property: item[0]
-            .replace("og_", "og:")
-            .replace("article_", "article:")
-            .replace("twitter_", "twitter:"),
-          content: item[1],
-        };
-      });
-    //case og_image
-    if (metaData.og_image) {
-      let imageMeta = [
-        {
-          property: "og:image",
-          content: metaData.og_image[0].url,
-        },
-        {
-          property: "og:image:width",
-          content: metaData.og_image[0].width,
-        },
-        {
-          property: "og:image:height",
-          content: metaData.og_image[0].height,
-        },
-        {
-          property: "og:image:type",
-          content: metaData.og_image[0].type,
-        },
-      ];
-      meta.push(...imageMeta);
-    }
-    if (metaData.twitter_misc) {
-      let tmp = Object.entries(metaData.twitter_misc);
-      tmp.forEach((item, key) => {
-        meta.push({
-          name: `twitter:label${key + 1}`,
-          content: item[0],
-        });
-        meta.push({
-          name: `twitter:data${key + 1}`,
-          content: item[1],
-        });
-      });
-    }
-    //console.log(meta);
+
+    console.log(route);
+
+    metaData.title = data.title;
+    metaData.og_image = data.image;
+    metaData.description = '';
+    metaData.url = route.fullPath;
+
+    let metaTags = [
+      {
+        property: "og:image",
+        content: metaData.og_image,
+      },
+      {
+        property: "og:image:width",
+        content: "600",
+      },
+      {
+        property: "og:image:height",
+        content: "300",
+      },
+      {
+        property: "og:image:type",
+        content: "website",
+      },
+      {
+        property: "og:title",
+        content: metaData.title,
+      },
+      {
+        property: "og:url",
+        content: metaData.url,
+      }
+    ];
+    meta.push(...metaTags);
+    console.log(meta);
+    console.log(metaData);
 
     useHead({
       title: metaData?.title,
       meta: [
-        ...meta,
-        {
-          name: "description",
-          content: metaData?.og_description,
-        },
+        ...meta
       ],
       link: [
         { rel: "icon", sizes: "32x32", href: "/_nuxt/assets/img/32x32.png" },
