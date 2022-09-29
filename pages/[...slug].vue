@@ -11,17 +11,20 @@
 const route = useRoute();
 let data;
 if (route.params.slug) {
-  let id = route.params.slug;
+  let slugArr = route.params.slug;
+  let slug = '';
+  let domain = '';
   //check id is array or not
-  if (Array.isArray(id)) {
-    id = id[0];
+  if (Array.isArray(slugArr)) {
+    domain = slugArr[0];
+    slug = slugArr[1];
   }
 
   // console.log(id);
-  const apiUrl = `https://meovat.tinmoingay.net/api/post/getBlogBySlug?slug=${id}`;
+  const apiUrl = `https://${domain}/api/post/getBlogBySlug?slug=${slug}`;
   const response = await fetch(apiUrl);
   const json = await response.json();
-  console.log(json);
+  // console.log(json);
 
   let meta = [];
   if (json.code == 1) {
@@ -29,7 +32,7 @@ if (route.params.slug) {
     const metaData = {};
     //convert properties from yoast_head_json to array
 
-    console.log(route);
+    // console.log(route);
 
     metaData.title = data.title;
     metaData.og_image = data.image;
@@ -63,8 +66,8 @@ if (route.params.slug) {
       }
     ];
     meta.push(...metaTags);
-    console.log(meta);
-    console.log(metaData);
+    // console.log(meta);
+    // console.log(metaData);
 
     useHead({
       title: metaData?.title,

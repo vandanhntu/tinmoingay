@@ -11,9 +11,11 @@
  */
 
 export default defineEventHandler((event) => {
+    let slugArray = event.req.url.split('/');
+    // console.log(slugArray);
     const headers = event.req.headers;
-    
+
     if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
-        sendRedirect(event,"https://meovat.tinmoingay.net/blog"+event.req.url);
+        sendRedirect(event,`https://${slugArray[1]}/blog/${slugArray[2]}`);
     }
 })
