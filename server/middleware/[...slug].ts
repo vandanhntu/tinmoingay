@@ -14,7 +14,6 @@ import {appendHeader} from "h3";
 
 export default defineEventHandler((event) => {
     let slugArray = event.req.url.split('/');
-    // console.log(slugArray);
     const headers = event.req.headers;
 
     // console.log('ts');
