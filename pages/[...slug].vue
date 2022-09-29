@@ -22,7 +22,7 @@ if (route.params.slug) {
   }
 
   // console.log('vue');
-  const apiUrl = `https://pub.metaconex.net/api/post/getBlogByCode?code=${slug}`;
+  const apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
   const response = await fetch(apiUrl);
   const json = await response.json();
 
