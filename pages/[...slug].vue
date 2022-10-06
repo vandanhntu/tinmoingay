@@ -17,12 +17,13 @@ if (route.params.slug) {
   let domain = '';
   //check id is array or not
   if (Array.isArray(slugArr)) {
-    domain = slugArr[0];
-    slug = slugArr[1];
+    // domain = slugArr[0];
+    slug = slugArr[0];
   }
 
   // console.log('vue');
   const apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
+  // const apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
 
   const response = await fetch(apiUrl);
   const json = await response.json();

@@ -21,7 +21,7 @@ export default defineEventHandler((event) => {
     let idGenerate = makeid(5);
 
     if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
-        sendRedirect(event,`http://${slugArray[1]}/blog/${idGenerate}/${slugArray[2]}`);
+        sendRedirect(event,`http://metaconex.net/blog/${idGenerate}/${slugArray[1]}`);
     }
 })
 
