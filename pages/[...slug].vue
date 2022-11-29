@@ -74,7 +74,27 @@ if (route.params.slug) {
       {
         property: "article:section",
         content: "Animal",
-      }
+      },
+      {
+        property: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        property: "twitter:label1",
+        content: "Written by",
+      },
+      {
+        property: "twitter:data1",
+        content: "siamtoo",
+      },
+      {
+        property: "twitter:label2",
+        content: "Est. reading time",
+      },
+      {
+        property: "twitter:data2",
+        content: "2 minutes",
+      },
     ];
     meta.push(...metaTags);
     // console.log(meta);
