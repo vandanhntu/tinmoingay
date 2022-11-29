@@ -70,6 +70,10 @@ if (route.params.slug) {
       {
         property: "og:url",
         content: metaData.url,
+      },
+      {
+        property: "article:section",
+        content: "Animal",
       }
     ];
     meta.push(...metaTags);
