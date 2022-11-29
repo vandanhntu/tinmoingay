@@ -1,10 +1,12 @@
 <template>
   <div class="post" v-if="data">
-    <h1 class="title mt-3" v-html="data.title"></h1>
-    <div class="post-meta">
-      <span class="date me-1">{{ formatDate(data.created_at) }}</span>
-    </div>
-    <div class="post-content mt-2" v-html="data.description"></div>
+<!--    <h1 class="title mt-3" v-html="data.title"></h1>-->
+<!--    <div class="post-meta">-->
+<!--      <span class="date me-1">{{ formatDate(data.created_at) }}</span>-->
+<!--    </div>-->
+<!--    <div class="post-content mt-2" v-html="data.description"></div>-->
+    <h2 class="title mt-3" v-html="data.title"></h2>
+    <div class="mt-2" v-html="data.description"></div>
   </div>
 </template>
 <script setup>
