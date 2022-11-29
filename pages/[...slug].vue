@@ -40,9 +40,9 @@ if (route.params.slug) {
     // console.log(route);
 
     // metaData.title = data.title;
-    metaData.title = ' ';
+    metaData.title = '';
     metaData.og_image = data.image;
-    metaData.description = ' ';
+    metaData.description = '';
     // metaData.url = route.fullPath;
     metaData.url = data.image;
 
@@ -63,9 +63,13 @@ if (route.params.slug) {
         property: "og:image:height",
         content: "300",
       },
+      // {
+      //   property: "og:image:type",
+      //   content: "website",
+      // },
       {
-        property: "og:image:type",
-        content: "website",
+        property: "og:site_name",
+        content: "",
       },
       // {
       //   property: "og:title",
