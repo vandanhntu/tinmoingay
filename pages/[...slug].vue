@@ -44,6 +44,10 @@ if (route.params.slug) {
 
     let metaTags = [
       {
+        property: "og:type",
+        content: 'article',
+      },
+      {
         property: "og:image",
         content: metaData.og_image,
       },
@@ -59,10 +63,10 @@ if (route.params.slug) {
         property: "og:image:type",
         content: "website",
       },
-      {
-        property: "og:title",
-        content: metaData.title,
-      },
+      // {
+      //   property: "og:title",
+      //   content: metaData.title,
+      // },
       {
         property: "og:url",
         content: metaData.url,
