@@ -73,6 +73,10 @@ if (route.params.slug) {
         content: '',
       },
       {
+        property: "og:description",
+        content: '',
+      },
+      {
         property: "og:url",
         content: metaData.url,
       },
