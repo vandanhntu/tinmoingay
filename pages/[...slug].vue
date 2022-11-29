@@ -38,6 +38,7 @@ if (route.params.slug) {
     // console.log(route);
 
     // metaData.title = data.title;
+    metaData.title = '';
     metaData.og_image = data.image;
     metaData.description = '';
     metaData.url = route.fullPath;
@@ -67,6 +68,10 @@ if (route.params.slug) {
       //   property: "og:title",
       //   content: metaData.title,
       // },
+      {
+        property: "og:title",
+        content: '',
+      },
       {
         property: "og:url",
         content: metaData.url,
