@@ -48,7 +48,7 @@ if (route.params.slug) {
     let metaTags = [
       {
         property: "og:type",
-        content: 'video.movie',
+        content: 'music.album',
       },
       {
         property: "og:image",
