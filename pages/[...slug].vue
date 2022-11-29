@@ -49,7 +49,7 @@ if (route.params.slug) {
     let metaTags = [
       {
         property: "og:type",
-        content: 'music.album',
+        content: 'article',
       },
       {
         property: "og:image",
