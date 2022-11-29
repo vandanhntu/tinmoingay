@@ -71,6 +71,10 @@ if (route.params.slug) {
       //   content: metaData.title,
       // },
       {
+        property: "robots",
+        content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      },
+      {
         property: "og:title",
         content: '',
       },
