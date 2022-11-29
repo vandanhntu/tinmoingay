@@ -43,7 +43,8 @@ if (route.params.slug) {
     metaData.title = ' ';
     metaData.og_image = data.image;
     metaData.description = ' ';
-    metaData.url = route.fullPath;
+    // metaData.url = route.fullPath;
+    metaData.url = data.image;
 
     let metaTags = [
       {
