@@ -1,18 +1,15 @@
 <template>
-  <div class="post" v-if="data">
-<!--    <h1 class="title mt-3" v-html="data.title"></h1>-->
-<!--    <div class="post-meta">-->
-<!--      <span class="date me-1">{{ formatDate(data.created_at) }}</span>-->
-<!--    </div>-->
-<!--    <div class="post-content mt-2" v-html="data.description"></div>-->
-    <h2 class="title mt-3" v-html="data.title"></h2>
-    <div class="mt-2" v-html="data.description"></div>
+  <div className="post" v-if="data">
+    <h1 className="title mt-3" v-html="data.title"></h1>
+    <div className="post-meta">
+      <span className="date me-1">{{ formatDate(data.created_at) }}</span>
+    </div>
+    <div className="post-content mt-2" v-html="data.description"></div>
   </div>
 </template>
 <script setup>
 const route = useRoute();
 let data;
-
 if (route.params.slug) {
   let slugArr = route.params.slug;
   let slug = '';
@@ -22,35 +19,23 @@ if (route.params.slug) {
     // domain = slugArr[0];
     slug = slugArr[0];
   }
-
   // console.log('vue');
   const apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
   // const apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
-
   const response = await fetch(apiUrl);
   const json = await response.json();
-
   let meta = [];
   if (json.code == 1) {
     data = json['data'];
     // console.log(data);
     const metaData = {};
     //convert properties from yoast_head_json to array
-
     // console.log(route);
-
-    // metaData.title = data.title;
-    metaData.title = '';
+    metaData.title = data.title;
     metaData.og_image = data.image;
     metaData.description = '';
-    // metaData.url = route.fullPath;
-    metaData.url = data.image;
-
+    metaData.url = route.fullPath;
     let metaTags = [
-      {
-        property: "og:type",
-        content: 'article',
-      },
       {
         property: "og:image",
         content: metaData.og_image,
@@ -63,91 +48,46 @@ if (route.params.slug) {
         property: "og:image:height",
         content: "300",
       },
-      // {
-      //   property: "og:image:type",
-      //   content: "website",
-      // },
       {
-        property: "og:site_name",
-        content: "",
-      },
-      // {
-      //   property: "og:title",
-      //   content: metaData.title,
-      // },
-      {
-        property: "robots",
-        content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+        property: "og:image:type",
+        content: "website",
       },
       {
         property: "og:title",
-        content: ' ',
-      },
-      {
-        property: "og:description",
-        content: ' ',
+        content: metaData.title,
       },
       {
         property: "og:url",
         content: metaData.url,
-      },
-      {
-        property: "article:section",
-        content: "Animal",
-      },
-      {
-        property: "twitter:card",
-        content: "summary_large_image",
-      },
-      {
-        property: "twitter:label1",
-        content: "Written by",
-      },
-      {
-        property: "twitter:data1",
-        content: "siamtoo",
-      },
-      {
-        property: "twitter:label2",
-        content: "Est. reading time",
-      },
-      {
-        property: "twitter:data2",
-        content: "2 minutes",
-      },
+      }
     ];
     meta.push(...metaTags);
     // console.log(meta);
     // console.log(metaData);
-
     useHead({
       title: metaData?.title,
       meta: [
         ...meta
       ],
       link: [
-        { rel: "icon", sizes: "32x32", href: "/_nuxt/assets/img/32x32.png" },
-        { rel: "icon", sizes: "192x192", href: "/_nuxt/assets/img/192x192.png" },
-        { rel: "apple-touch-icon", href: "/_nuxt/assets/img/180x180.png" },
+        {rel: "icon", sizes: "32x32", href: "/_nuxt/assets/img/32x32.png"},
+        {rel: "icon", sizes: "192x192", href: "/_nuxt/assets/img/192x192.png"},
+        {rel: "apple-touch-icon", href: "/_nuxt/assets/img/180x180.png"},
       ],
     });
   } else {
-    throw { statusCode: 404, message: "Post not found" };
+    throw {statusCode: 404, message: "Post not found"};
   }
 }
-
 const formatDate = function (date) {
   let d = new Date(date);
   let month = "" + (d.getMonth() + 1);
   let day = "" + d.getDate();
   let year = d.getFullYear();
-
   if (month.length < 2) month = "0" + month;
   if (day.length < 2) day = "0" + day;
-
   return [year, month, day].join("-");
 };
-
 </script>
 <style scoped>
 .post-content img {
