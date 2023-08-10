@@ -20,8 +20,18 @@ if (route.params.slug) {
     slug = slugArr[0];
   }
   // console.log('vue');
-  const apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
-  // const apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
+  // const apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
+  // const apiUrl = `https://pub.metaconex.io/api/post/getBlogBySlugWebsite?slug=${slug}`;
+
+  let apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
+  if(slug.includes('-')){
+    // apiUrl = `http://ads.metaconex.net/api/post/getBlogBySlugWebsite?slug=${slug}`;
+    apiUrl = `https://pub.metaconex.io/api/post/getBlogBySlugWebsite?slug=${slug}`;
+  } else {
+    // apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
+    apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
+  }
+
   const response = await fetch(apiUrl);
   const json = await response.json();
   let meta = [];
