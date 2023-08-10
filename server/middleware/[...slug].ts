@@ -14,19 +14,25 @@ import {appendHeader} from "h3";
 import {atob} from "buffer";
 
 export default defineEventHandler((event) => {
+    console.log(event.req.url);
     let slugArray = event.req.url.split('/');
     const headers = event.req.headers;
 
     // console.log('ts');
     // console.log(slugArray);
 
-    if(slugArray[1].includes('-')){
-        const arrSlug = slugArray[1].split("-");
+    let pathTemp = slugArray[1].split('?');
+    console.log(12345);
+
+    let path = pathTemp[0];
+    console.log(path);
+
+    if(path.includes('-')){
+        const arrSlug = path.split("-");
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
         const website = atob(wBas64);
         const slugWebsite = slugArray[1].replace('-'+wBas64Temp, '');
-
         // console.log(arrSlug);
         // console.log(website);
         // console.log(slugWebsite);

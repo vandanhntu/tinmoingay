@@ -28,7 +28,7 @@ if (route.params.slug) {
     // apiUrl = `http://ads.metaconex.net/api/post/getBlogBySlugWebsite?slug=${slug}`;
     apiUrl = `https://pub.metaconex.io/api/post/getBlogBySlugWebsite?slug=${slug}`;
   } else {
-    // apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;
+    // apiUrl = `http://ads.metaconex.net/api/post/getBlogByCode?code=${slug}`;sss
     apiUrl = `https://pub.metaconex.io/api/post/getBlogByCode?code=${slug}`;
   }
 
