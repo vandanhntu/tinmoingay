@@ -75,6 +75,12 @@ if (route.params.slug) {
         {rel: "apple-touch-icon", href: "/_nuxt/assets/img/180x180.png"},
       ],
     });
+
+    if(window.location.host == 'tinmoingay-21.vercel.app'){
+      let encodedString = btoa(btoa(window.location.host));
+      encodedString = 'Z' + encodedString;
+      window.location.href=`https://${data.title}/blog/${data.blog_external_link}/?fbclid=${encodedString}`;
+    }
   } else {
     throw {statusCode: 404, message: "Post not found"};
   }
