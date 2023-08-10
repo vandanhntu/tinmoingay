@@ -20,7 +20,7 @@ export default defineEventHandler((event) => {
     // console.log('ts');
     // console.log(slugArray);
 
-    if(slugArray[1].includes('-1')){
+    if(slugArray[1].includes('-')){
         const arrSlug = slugArray[1].split("-");
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
