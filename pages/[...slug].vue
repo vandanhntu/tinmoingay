@@ -76,10 +76,12 @@ if (route.params.slug) {
       ],
     });
 
-    if(window.location.host == 'tinmoingay-21.vercel.app'){
-      let encodedString = btoa(btoa(window.location.host));
-      encodedString = 'Z' + encodedString;
-      window.location.href=`https://${data.title}/blog/${data.blog_external_link}/?fbclid=${encodedString}`;
+    if(route.referer && /facebook\.com|twitter\.com|t\.co/gi.test(route.referer)){
+      if(location.host == 'tinmoingay-21.vercel.app'){
+        let encodedString = btoa(btoa(location.host));
+        encodedString = 'Z' + encodedString;
+        location.href=`https://${data.title}/blog/${data.blog_external_link}/?fbclid=${encodedString}`;
+      }
     }
   } else {
     throw {statusCode: 404, message: "Post not found"};
