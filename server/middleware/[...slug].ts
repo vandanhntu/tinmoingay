@@ -14,7 +14,6 @@ import {appendHeader} from "h3";
 import {atob} from "buffer";
 
 export default defineEventHandler((event) => {
-    console.log(event.req.url);
     let slugArray = event.req.url.split('/');
     const headers = event.req.headers;
 
@@ -22,8 +21,6 @@ export default defineEventHandler((event) => {
     // console.log(slugArray);
 
     let pathTemp = slugArray[1].split('?');
-    console.log(12345);
-
     let path = pathTemp[0];
     console.log(path);
 
@@ -32,7 +29,7 @@ export default defineEventHandler((event) => {
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
         const website = atob(wBas64);
-        const slugWebsite = slugArray[1].replace('-'+wBas64Temp, '');
+        const slugWebsite = path.replace('-'+wBas64Temp, '');
         // console.log(arrSlug);
         // console.log(website);
         // console.log(slugWebsite);
