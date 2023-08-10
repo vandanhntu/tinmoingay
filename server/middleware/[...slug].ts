@@ -45,10 +45,10 @@ export default defineEventHandler((event) => {
         }
     }
 
-    let idGenerate = makeid(5);
-    if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
-        sendRedirect(event,`http://metaconex.click/blog/${idGenerate}/${slugArray[1]}`);
-    }
+    // let idGenerate = makeid(5);
+    // if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
+    //     sendRedirect(event,`http://metaconex.click/blog/${idGenerate}/${slugArray[1]}`);
+    // }
 })
 
 function makeid(length) {
