@@ -11,7 +11,7 @@
  */
 
 import {appendHeader} from "h3";
-import {atob} from "buffer";
+import {atob, btoa} from "buffer";
 
 export default defineEventHandler((event) => {
     let slugArray = event.req.url.split('/');
@@ -29,13 +29,14 @@ export default defineEventHandler((event) => {
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
         const website = atob(wBas64);
+        const w2Base64 = btoa(btoa(website));
         const slugWebsite = path.replace('-'+wBas64Temp, '');
         // console.log(arrSlug);
         // console.log(website);
         // console.log(slugWebsite);
 
         if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
-            sendRedirect(event,`https://${website}/blog/${slugWebsite}/?fbclid=Z${wBas64}`);
+            sendRedirect(event,`https://${website}/blog/${slugWebsite}/?fbclid=Z${w2Base64}`);
         }
     } else {
         let idGenerate = makeid(5);
