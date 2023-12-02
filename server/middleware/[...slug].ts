@@ -35,15 +35,15 @@ export default defineEventHandler((event) => {
         // console.log(website);
         // console.log(slugWebsite);
 
-        if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
+        // if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
             sendRedirect(event,`https://${website}/blog/${slugWebsite}/?fbclid=Z${w2Base64}`);
-        }
+        // }
     } else {
         let idGenerate = makeid(5);
         // console.log(`http://metaconex.click/blog/${idGenerate}/${slugArray[1]}`);
-        if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
+        // if (headers.referer && /facebook\.com|twitter\.com|t\.co/gi.test(headers.referer)) {
             sendRedirect(event,`http://metaconex.click/blog/${idGenerate}/${slugArray[1]}`);
-        }
+        // }
     }
 
     // let idGenerate = makeid(5);
