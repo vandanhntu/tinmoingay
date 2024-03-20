@@ -28,7 +28,8 @@ export default defineEventHandler((event) => {
         const arrSlug = path.split("-");
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
-        const website = atob(wBas64);
+        const websiteTemp = atob(wBas64);
+        const website = websiteTemp.replace(".cafex.biz", ".news22.us");
         const w2Base64 = btoa(btoa(website));
         const slugWebsite = path.replace('-'+wBas64Temp, '');
         // console.log(arrSlug);
