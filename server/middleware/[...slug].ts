@@ -29,7 +29,7 @@ export default defineEventHandler((event) => {
         const wBas64Temp = arrSlug[arrSlug.length - 1];
         const wBas64 = wBas64Temp.slice(0, -1);
         const websiteTemp = atob(wBas64);
-        const website = websiteTemp.replace(".cafex.biz", ".news22.us");
+        const website = websiteTemp.replace(".news22.us", ".minews.biz");
         const w2Base64 = btoa(btoa(website));
         const slugWebsite = path.replace('-'+wBas64Temp, '');
         // console.log(arrSlug);
